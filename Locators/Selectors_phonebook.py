@@ -37,11 +37,73 @@ try:   # open site
     root_2 = driver.find_elements(By.ID, 'root')
     root_3 = driver.find_elements(By.CSS_SELECTOR, '#root')
 
+# by attribute
+    input_3 = driver.find_element(By.XPATH, "//input[@placeholder='Password']")
+
+    input_4 = driver.find_element(By.CSS_SELECTOR, "[placeholder^='Pas']") # start CSS
+    input_5 = driver.find_element(By.XPATH, "//*[starts-with(@placeholder, 'Pas')]") # start xPath
+
+    input_6 = driver.find_element(By.CSS_SELECTOR, "[placeholder$='ord']") # end CSS
+    input_7 = driver.find_element(By.XPATH, "//*[contains(@placeholder, 'ord')]") # end xPath
+
+    input_8 = driver.find_element(By.CSS_SELECTOR, "[placeholder*='ssw']") # middle CSS
+    input_9 = driver.find_element(By.XPATH, "//*[contains(@placeholder, 'ssw')]") # middle xPath
+
+    # parent
+    div_3 = driver.find_element(By.XPATH, "//h1/..")
+    div_4 = driver.find_element(By.XPATH, "//h1/parent::div")
+    div_5 = driver.find_element(By.XPATH, "//h1/parent::*")
+
+# ancestor
+    ancestors = driver.find_elements(By.XPATH, "//h1/ancestor::*")
+    for a in ancestors:
+        print(a.tag_name)
+
+# ancestor-or-self
+    print()
+
+    ancestors = driver.find_elements(By.XPATH, "//h1/ancestor-or-self::*")
+    for a in ancestors:
+        print(a.tag_name)
+        print()
+
+# folowing_sibling
+    following_sibling = driver.find_elements(By.XPATH, "//h1/following-sibling::*")
+
+    for f in following_sibling:
+        print(f.tag_name)
+
+    print()
+    # preceding_sibling
+    preceding_sibling = driver.find_elements(By.XPATH, "//*[@href='/login']/preceding-sibling::*")
+
+    for p in preceding_sibling:
+        print(p.tag_name)
+        print()
 
 
+#inner text
 
+    login_button_1 = driver.find_element(By.CSS_SELECTOR, "[name='login']")
+    text = login_button_1.text
+    print(text)
+    print()
 
+    form = driver.find_element(By.XPATH, "//form")
+    text_form = form.text
+    print("*" * 10)
+    print(text_form)
+    print()
 
+    html_element = driver.find_element(By.TAG_NAME, 'html')
+    text_all = html_element.text
+    print("*" * 10)
+    print(text_all)
+    print()
+
+    br = driver.find_element(By.TAG_NAME, "br")
+    print("*" * 10)
+    print("text br -->" + br.text)
 
 
 
